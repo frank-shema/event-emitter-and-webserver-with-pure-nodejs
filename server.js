@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const fsPromises = require('fs').promises;
 
-const logEvents = require('./logEvents');
+const logEvents = require('./logEvent');
 const EventEmitter = require('events');
 class Emitter extends EventEmitter { };
 // initialize object 
@@ -74,7 +74,6 @@ const server = http.createServer((req, res) => {
                     ? path.join(__dirname, 'views', req.url)
                     : path.join(__dirname, req.url);
 
-    // makes .html extension not required in the browser
     if (!extension && req.url.slice(-1) !== '/') filePath += '.html';
 
     const fileExists = fs.existsSync(filePath);
